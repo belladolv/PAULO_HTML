@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revolução de Atena - Filosofia e Cultura</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            /* Cores Modo Claro */
+            --cor-primaria: #1a1a1a;
+            --cor-secundaria: #404040;
+            --cor-destaque: #8B4513;
+            --cor-destaque-suave: #A0522D;
+            --cor-texto: #2c2c2c;
+            --cor-texto-suave: #666666;
+            --cor-fundo: #ffffff;
+            --cor-fundo-card: #f8f9fa;
+            --cor-fundo-suave: #f5f5f5;
+            --cor-borda: #e0e0e0;
+            --cor-borda-suave: #f0f0f0;
+            --sombra-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --sombra-card-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --gradiente-destaque: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
+            --largura-sidebar: 320px;
+            --largura-conteudo: 1100px;
+        }
+
+        [data-theme="dark"] {
+            /* Cores Modo Escuro */
+            --cor-primaria: #f5f5f5;
+            --cor-secundaria: #cccccc;
+            --cor-destaque: #D2691E;
+            --cor-destaque-suave: #CD853F;
+            --cor-texto: #e0e0e0;
+            --cor-texto-suave: #a0a0a0;
+            --cor-fundo: #0a0a0a;
+            --cor-fundo-card: #1a1a1a;
+            --cor-fundo-suave: #141414;
+            --cor-borda: #333333;
+            --cor-borda-suave: #2a2a2a;
+            --sombra-card: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+            --sombra-card-hover: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            --gradiente-destaque: linear-gradient(135deg, #D2691E 0%, #CD853F 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.7;
+            color: var(--cor-texto);
+            background: var(--cor-fundo);
+            display: grid;
+            grid-template-columns: var(--largura-sidebar) 1fr;
+            min-height: 100vh;
+            font-size: 17px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Theme Toggle Aprimorado */
+        .theme-toggle {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            background: var(--cor-fundo-card);
+            color: var(--cor-destaque);
+            border: 2px solid var(--cor-borda);
+            border-radius: 50%;
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1001;
+            font-size: 1.3rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--sombra-card);
+        }
+        
+        .theme-toggle:hover {
+            transform: rotate(15deg) scale(1.1);
+            border-color: var(--cor-destaque);
+            box-shadow: 0 8px 25px rgba(139, 69, 19, 0.15);
+        }
+        
+        /* Sidebar Aprimorada */
+        .sidebar {
+            background: var(--cor-fundo-card);
+            color: var(--cor-texto);
+            padding: 3rem 2.5rem;
+            position: fixed;
+            width: var(--largura-sidebar);
+            height: 100vh;
+            overflow-y: auto;
+            border-right: 1px solid var(--cor-borda);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+        }
+
+        [data-theme="dark"] .sidebar {
+            box-shadow: 2px 0 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .site-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            font-weight: 700;
+            color: var(--cor-primaria);
+            position: relative;
+        }
+        
+        .site-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--gradiente-destaque);
+            border-radius: 2px;
+        }
+        
+        .site-description {
+            font-size: 1.05rem;
+            margin-bottom: 2.5rem;
+            color: var(--cor-texto-suave);
+            line-height: 1.6;
+            font-style: italic;
+        }
+        
+        .nav-links {
+            list-style: none;
+            margin-bottom: 3rem;
+        }
+        
+        .nav-links li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .nav-links a {
+            color: var(--cor-texto);
+            text-decoration: none;
+            padding: 1rem 1.2rem;
+            display: block;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            left: -100%;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradiente-destaque);
+            opacity: 0.1;
+            transition: left 0.3s ease;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            background: var(--cor-fundo-suave);
+            border-color: var(--cor-borda);
+            transform: translateX(5px);
+        }
+        
+        .nav-links a:hover::before, .nav-links a.active::before {
+            left: 0;
+        }
+        
+        .nav-links a.active {
+            color: var(--cor-destaque);
+            font-weight: 600;
+        }
+        
+        .nav-links i {
+            margin-right: 12px;
+            width: 20px;
+            text-align: center;
+            color: var(--cor-destaque);
+        }
+        
+        .categories {
+            margin-top: 3rem;
+        }
+        
+        .categories h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--cor-primaria);
+            padding-left: 1rem;
+            border-left: 4px solid var(--cor-destaque);
+        }
+        
+        .category-list {
+            list-style: none;
+        }
+        
+        .category-list li {
+            margin-bottom: 0.7rem;
+        }
+        
+        .category-list a {
+            color: var(--cor-texto-suave);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: block;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            border: 1px solid transparent;
+        }
+        
+        .category-list a:hover {
+            color: var(--cor-destaque);
+            background: var(--cor-fundo-suave);
+            border-color: var(--cor-borda);
+            transform: translateX(5px);
+        }
+        
+        .sidebar-search {
+            margin: 2.5rem 0;
+        }
+        
+        .search-box {
+            display: flex;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--sombra-card);
+            border: 1px solid var(--cor-borda);
+        }
+        
+        .search-box input {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            background: var(--cor-fundo);
+            color: var(--cor-texto);
+            font-size: 1rem;
+        }
+        
+        .search-box input:focus {
+            outline: none;
+        }
+        
+        .search-box button {
+            background: var(--gradiente-destaque);
+            color: white;
+            border: none;
+            padding: 0 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .search-box button:hover {
+            opacity: 0.9;
+            transform: scale(1.05);
+        }
+        
+        .popular-tags {
+            margin-top: 2.5rem;
+        }
+        
+        .popular-tags h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--cor-primaria);
+            padding-left: 1rem;
+            border-left: 4px solid var(--cor-destaque);
+        }
+        
+        .tags-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            margin-top: 1rem;
+        }
+        
+        .tag {
+            background: var(--cor-fundo-suave);
+            color: var(--cor-texto);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            border: 1px solid var(--cor-borda);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .tag:hover {
+            background: var(--gradiente-destaque);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.3);
+        }
+        
+        .tag.active {
+            background: var(--gradiente-destaque);
+            color: white;
+            box-shadow: 0 3px 10px rgba(139, 69, 19, 0.2);
+        }
+        
+        .sidebar-footer {
+            margin-top: 4rem;
+            font-size: 0.9rem;
+            color: var(--cor-texto-suave);
+            text-align: center;
+            border-top: 1px solid var(--cor-borda);
+            padding-top: 2rem;
+        }
+        
+        /* Main Content */
+        .main-content {
+            grid-column: 2;
+            padding: 3rem 4rem;
+            max-width: var(--largura-conteudo);
+            margin: 0 auto;
+            width: 100%;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        /* Welcome Banner Aprimorado */
+        .welcome-banner {
+            background: var(--gradiente-destaque);
+            color: white;
+            padding: 4rem;
+            border-radius: 16px;
+            margin-bottom: 3rem;
+            box-shadow: var(--sombra-card);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .welcome-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+        }
+        
+        .welcome-banner h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            position: relative;
+            font-weight: 700;
+        }
+        
+        .welcome-banner p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            line-height: 1.5;
+            position: relative;
+            font-weight: 300;
+        }
+        
+        /* Cards Aprimorados */
+        .post {
+            background: var(--cor-fundo-card);
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border-radius: 16px;
+            border: 1px solid var(--cor-borda);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--sombra-card);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .post::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gradiente-destaque);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .post:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--sombra-card-hover);
+        }
+        
+        .post:hover::before {
+            transform: scaleY(1);
+        }
+        
+        .post.hidden {
+            display: none;
+        }
+        
+        .post-header {
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+        
+        .post-title {
+            font-size: 2.2rem;
+            color: var(--cor-primaria);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+        
+        .post:hover .post-title {
+            color: var(--cor-destaque);
+        }
+        
+        .post-meta {
+            color: var(--cor-texto-suave);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .post-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .post-meta i {
+            color: var(--cor-destaque);
+        }
+        
+        .post-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+        }
+        
+        .post-content {
+            line-height: 1.8;
+            font-size: 1.15rem;
+        }
+        
+        .post-content img {
+            max-width: 100%;
+            height: auto;
+            margin: 2rem 0;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            cursor: zoom-in;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .post-content img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .post-content p {
+            margin-bottom: 1.8rem;
+            color: var(--cor-texto);
+        }
+        
+        .post-content blockquote {
+            border-left: 4px solid var(--cor-destaque);
+            padding: 2rem 2.5rem;
+            margin: 2.5rem 0;
+            background: var(--cor-fundo-suave);
+            font-style: italic;
+            font-size: 1.3rem;
+            line-height: 1.6;
+            border-radius: 0 12px 12px 0;
+            position: relative;
+            box-shadow: inset 0 0 0 1px var(--cor-borda);
+        }
+        
+        .post-content blockquote::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--cor-destaque);
+            position: absolute;
+            left: 1rem;
+            top: 0.5rem;
+            opacity: 0.3;
+            font-family: serif;
+        }
+        
+        .post-content h3 {
+            font-size: 1.5rem;
+            color: var(--cor-primaria);
+            margin: 2.5rem 0 1.2rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--cor-borda-suave);
+            font-weight: 600;
+        }
+        
+        /* Archive Cards Aprimorados */
+        .archive-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .archive-item {
+            background: var(--cor-fundo-card);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--cor-borda);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            box-shadow: var(--sombra-card);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .archive-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gradiente-destaque);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .archive-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--sombra-card-hover);
+        }
+        
+        .archive-item:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .archive-date {
+            color: var(--cor-destaque);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .archive-item h3 {
+            margin-bottom: 1rem;
+            color: var(--cor-primaria);
+            line-height: 1.4;
+        }
+        
+        .archive-item a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            position: fixed;
+            top: 25px;
+            left: 25px;
+            background: var(--gradiente-destaque);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 16px;
+            font-size: 1.3rem;
+            z-index: 1000;
+            cursor: pointer;
+            box-shadow: var(--sombra-card);
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-toggle:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            :root {
+                --largura-sidebar: 280px;
+                --largura-conteudo: 900px;
+            }
+            
+            .main-content {
+                padding: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            body {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                transform: translateX(-100%);
+                z-index: 999;
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                grid-column: 1;
+                padding: 1.5rem;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 1rem;
+            }
+            
+            .welcome-banner, .about-section, .post {
+                padding: 2rem;
+            }
+            
+            .post-title {
+                font-size: 1.8rem;
+            }
+            
+            .archive-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .welcome-banner h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Sidebar -->
+    <nav class="sidebar" id="sidebar">
+        <h1 class="site-title">Revolução de Atena</h1>
+        <p class="site-description">Um espaço para reflexões sobre filosofia, cultura, cinema e literatura.</p>
+        
+        <ul class="nav-links">
+            <li><a href="#inicio" class="nav-link active" data-page="inicio"><i class="fas fa-home"></i> Início</a></li>
+            <li><a href="#arquivo" class="nav-link" data-page="arquivo"><i class="fas fa-archive"></i> Arquivo</a></li>
+            <li><a href="#forum" class="nav-link" data-page="forum"><i class="fas fa-comments"></i> Fórum</a></li>
+            <li><a href="#tags" class="nav-link" data-page="tags"><i class="fas fa-tags"></i> Tags</a></li>
+            <li><a href="#sobre" class="nav-link" data-page="sobre"><i class="fas fa-info-circle"></i> Sobre</a></li>
+        </ul>
+        
+        <!-- Busca -->
+        <div class="sidebar-search">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Buscar no site...">
+                <button id="searchButton"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+        
+        <div class="categories">
+            <h3>Categorias</h3>
+            <ul class="category-list">
+                <li><a href="#" data-category="all">Todas as Categorias</a></li>
+                <li><a href="#" data-category="filosofia">Filosofia</a></li>
+                <li><a href="#" data-category="cinema">Cinema</a></li>
+                <li><a href="#" data-category="literatura">Literatura</a></li>
+                <li><a href="#" data-category="arte">Arte</a></li>
+            </ul>
+        </div>
+        
+        <!-- Tags Populares -->
+        <div class="popular-tags">
+            <h3>Tags Populares</h3>
+            <div class="tags-cloud" id="sidebarTags">
+                <!-- Tags serão inseridas via JavaScript -->
+            </div>
+        </div>
+        
+        <div class="sidebar-footer">
+            <p>© 2023 Revolução de Atena</p>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Página Início -->
+        <div id="inicio" class="page active">
+            <section class="welcome-banner">
+                <h1>Bem-vindo à Revolução de Atena</h1>
+                <p>Um espaço dedicado ao pensamento crítico, análise cultural e reflexão filosófica</p>
+            </section>
+
+            <!-- Filtros -->
+            <div class="archive-filters">
+                <div class="filter-group">
+                    <h3>Filtrar Artigos</h3>
+                    <div class="tags-cloud" id="filterTags">
+                        <!-- Tags de filtro serão inseridas via JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Post 1 -->
+            <article class="post" data-category="cinema filosofia" data-tags="nietzsche,cinema,filosofia,arte">
+                <header class="post-header">
+                    <h2 class="post-title">Meu Amigo Nietzsche: Uma Curta-Metragem Subestimada</h2>
+                    <div class="post-meta">
+                        <span class="post-meta-item">
+                            <i class="far fa-calendar"></i>
+                            <span>15 de Março, 2024</span>
+                        </span>
+                        <span class="post-meta-item">
+                            <i class="far fa-folder"></i>
+                            <span>Cinema, Filosofia</span>
+                        </span>
+                        <span class="post-meta-item">
+                            <i class="far fa-clock"></i>
+                            <span>12 min de leitura</span>
+                        </span>
+                    </div>
+                    <div class="post-tags">
+                        <span class="tag" data-tag="nietzsche">Nietzsche</span>
+                        <span class="tag" data-tag="cinema">Cinema</span>
+                        <span class="tag" data-tag="filosofia">Filosofia</span>
+                        <span class="tag" data-tag="arte">Arte</span>
+                    </div>
+                </header>
+                
+                <div class="post-content">
+                    <p>Em um cenário cinematográfico cada vez mais dominado por superproduções e efeitos especiais, às vezes nos deparamos com pequenas joias que passam despercebidas pelo grande público. "Meu Amigo Nietzsche" é uma dessas preciosidades.</p>
+                    
+                    <img src="https://images.unsplash.com/photo-1489599809505-fbe13c69f961?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Imagem representativa do filme" class="zoomable-image">
+                    
+                    <h3>A Premissa Inovadora</h3>
+                    
+                    <p>O curta-metragem, dirigido por um cineasta emergente, nos apresenta uma narrativa delicada sobre a amizade improvável entre um jovem estudante e o fantasma de Friedrich Nietzsche. A premissa pode soar excêntrica, mas a execução é profundamente humana e filosófica.</p>
+                    
+                    <blockquote>
+                        "O que não me destrói me fortalece" - Friedrich Nietzsche
+                    </blockquote>
+                    
+                    <h3>A Tradução de Conceitos Complexos</h3>
+                    
+                    <p>O que mais impressiona na obra é como consegue traduzir conceitos complexos da filosofia nietzschiana - como o eterno retorno, a morte de Deus e a vontade de poder - em situações cotidianas e acessíveis. O filme não apenas homenageia o pensador alemão, mas também demonstra a atualidade de suas ideias.</p>
+                </div>
+            </article>
+
+            <!-- Post 2 -->
+            <article class="post" data-category="filosofia politica" data-tags="foucault,filosofia,política,século xxi">
+                <header class="post-header">
+                    <h2 class="post-title">A Recepção da Obra de Foucault no Século XXI</h2>
+                    <div class="post-meta">
+                        <span class="post-meta-item">
+                            <i class="far fa-calendar"></i>
+                            <span>10 de Março, 2024</span>
+                        </span>
+                        <span class="post-meta-item">
+                            <i class="far fa-folder"></i>
+                            <span>Filosofia, Política</span>
+                        </span>
+                        <span class="post-meta-item">
+                            <i class="far fa-clock"></i>
+                            <span>15 min de leitura</span>
+                        </span>
+                    </div>
+                    <div class="post-tags">
+                        <span class="tag" data-tag="foucault">Foucault</span>
+                        <span class="tag" data-tag="filosofia">Filosofia</span>
+                        <span class="tag" data-tag="política">Política</span>
+                        <span class="tag" data-tag="século xxi">Século XXI</span>
+                    </div>
+                </header>
+                
+                <div class="post-content">
+                    <p>Quase quatro décadas após sua morte, Michel Foucault permanece um dos pensadores mais influentes e debatidos da contemporaneidade. Suas análises sobre poder, saber e subjetividade continuam a iluminar questões urgentes de nosso tempo.</p>
+                    
+                    <img src="https://images.unsplash.com/photo-1589994965851-a8f479c573a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Imagem representativa de Foucault" class="zoomable-image">
+                    
+                    <h3>Biopoder na Era Digital</h3>
+                    
+                    <p>Particularmente interessante é observar como a noção de biopoder, desenvolvida por Foucault nos anos 1970, tornou-se instrumental para analisar as formas contemporâneas de gestão da vida. Das políticas de vacinação às tecnologias de auto-monitoramento, o biopoder se manifesta de maneiras que talvez nem o próprio filósofo pudesse antecipar.</p>
+                    
+                    <blockquote>
+                        "O poder não é uma instituição, e não é uma estrutura; não é uma certa força com a qual estamos dotados; é o nome que se presta a uma situação estratégica complexa em uma sociedade dada." - Michel Foucault
+                    </blockquote>
+                </div>
+            </article>
+        </div>
+
+        <!-- Outras páginas... -->
+        
+    </main>
+
+    <script>
+        // Dados do site
+        const siteData = {
+            tags: [
+                { name: "nietzsche", count: 12 },
+                { name: "foucault", count: 8 },
+                { name: "estoicismo", count: 6 },
+                { name: "cinema", count: 15 },
+                { name: "literatura", count: 11 },
+                { name: "filosofia", count: 24 },
+                { name: "arte", count: 9 },
+                { name: "existencialismo", count: 7 }
+            ]
+        };
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeApp();
+        });
+
+        function initializeApp() {
+            initializeTags();
+            setupEventListeners();
+            
+            // Carregar tema salvo
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            if (savedTheme === 'dark') {
+                enableDarkMode();
+            }
+        }
+
+        function initializeTags() {
+            const sidebarTags = document.getElementById('sidebarTags');
+            const filterTags = document.getElementById('filterTags');
+            
+            const popularTags = [...siteData.tags].sort((a, b) => b.count - a.count).slice(0, 6);
+            
+            popularTags.forEach(tag => {
+                // Sidebar tags
+                const sidebarTag = document.createElement('span');
+                sidebarTag.className = 'tag';
+                sidebarTag.textContent = tag.name;
+                sidebarTag.setAttribute('data-tag', tag.name);
+                sidebarTags.appendChild(sidebarTag);
+                
+                // Filter tags
+                const filterTag = document.createElement('span');
+                filterTag.className = 'tag';
+                filterTag.textContent = tag.name;
+                filterTag.setAttribute('data-tag', tag.name);
+                filterTags.appendChild(filterTag);
+            });
+        }
+
+        function setupEventListeners() {
+            // Theme toggle
+            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+            
+            // Mobile menu
+            document.getElementById('mobileMenuToggle').addEventListener('click', toggleMobileMenu);
+            
+            // Navigation
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', handleNavigation);
+            });
+            
+            // Tags
+            document.querySelectorAll('.tag[data-tag]').forEach(tag => {
+                tag.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                });
+            });
+        }
+
+        function toggleTheme() {
+            const themeToggle = document.getElementById('themeToggle');
+            const icon = themeToggle.querySelector('i');
+            
+            if (document.body.getAttribute('data-theme') === 'dark') {
+                disableDarkMode();
+            } else {
+                enableDarkMode();
+            }
+        }
+
+        function enableDarkMode() {
+            document.body.setAttribute('data-theme', 'dark');
+            document.getElementById('themeToggle').querySelector('i').className = 'fas fa-sun';
+            localStorage.setItem('theme', 'dark');
+        }
+
+        function disableDarkMode() {
+            document.body.removeAttribute('data-theme');
+            document.getElementById('themeToggle').querySelector('i').className = 'fas fa-moon';
+            localStorage.setItem('theme', 'light');
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('sidebar').classList.toggle('active');
+        }
+
+        function handleNavigation(e) {
+            e.preventDefault();
+            
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            this.classList.add('active');
+            
+            const pageId = this.getAttribute('data-page');
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            
+            if (window.innerWidth <= 992) {
+                document.getElementById('sidebar').classList.remove('active');
+            }
+        }
+
+        // Efeitos de hover suaves
+        document.querySelectorAll('.post, .archive-item').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Animação de entrada dos elementos
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Aplicar animação aos posts e cards
+        document.querySelectorAll('.post, .archive-item').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>
